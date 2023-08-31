@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amor em Cascata</title>
+<style>
+  body {
+    margin: 0;
+    overflow: hidden;
+    background-color: black;
+  }
+
+  .falling-text {
+    position: absolute;
+    color: red;
+    font-size: 24px;
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+</style>
+</head>
+<body>
+<script>
+  const text = "Eu te amo";
+  const container = document.body;
+
+  function createFallingText() {
+    const fallingText = document.createElement("div");
+    fallingText.innerText = text;
+    fallingText.classList.add("falling-text");
+    container.appendChild(fallingText);
+
+    const startX = Math.random() * window.innerWidth;
+    const duration = Math.random() * 4 + 2;
+
+    fallingText.style.left = startX + "px";
+    fallingText.style.animation = `fall ${duration}s linear`;
+
+    fallingText.addEventListener("animationend", () => {
+      container.removeChild(fallingText);
+    });
+  }
+
+  setInterval(createFallingText, 500); // Cria um novo "Eu te amo" a cada 500ms
+</script>
+</body>
+</html>
